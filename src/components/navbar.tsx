@@ -4,7 +4,7 @@ const NavBar = () =>{
 
     return(
         <>
-            <nav className="bg-gray-950">
+            <nav className="bg-secondary">
                 <div className="mx-auto max-w-7xl p-2 sm:px-8 lg:px-8">
                     <div className="flex justify-center items-center">
                         <Link href="/">
