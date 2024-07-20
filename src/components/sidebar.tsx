@@ -4,10 +4,10 @@ import { Sidebar } from "flowbite-react";
 
 const SideBar = () => {
     return (
-        <Sidebar aria-label="Sidebar with content separator example">
-            <Sidebar.Items>
+        <Sidebar aria-label="Sidebar with content separator example" className="bg-two !important">
+            <Sidebar.Items >
                 <Sidebar.ItemGroup>
-                    <Sidebar.Item href="#" >
+                    <Sidebar.Item href="#">
                         Characters
                     </Sidebar.Item>
                     <Sidebar.Item href="#" >
@@ -15,10 +15,10 @@ const SideBar = () => {
                     </Sidebar.Item>
                 </Sidebar.ItemGroup>
                 <Sidebar.ItemGroup>
-                    <Sidebar.Item href="#" >
+                    <Sidebar.Item href="/login" >
                         Sign In
                     </Sidebar.Item>
-                    <Sidebar.Item href="#" >
+                    <Sidebar.Item href="signup" >
                         Sign Up
                     </Sidebar.Item>
                 </Sidebar.ItemGroup>
