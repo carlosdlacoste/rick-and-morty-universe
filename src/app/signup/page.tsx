@@ -3,18 +3,22 @@ import { useState } from "react"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
 import { Button } from "@/components/ui/button"
+import { useUserStore, NewUser } from "@/store/userStore"
 
-interface User{
-    fullName: string;
-    email: string;
-    password: string;
-}
 
 const SignUp = () =>{
 
-    const [user, setUser] = useState<User>({fullName: "", email: "", password: ""})
+    const [user, setUser] = useState<NewUser>({fullName: "", email: "", password: ""})
+    const {postUser} = useUserStore()
     const router = useRouter()
 
+    const handleAddUser = async (event: React.FormEvent) =>{
+        event.preventDefault()
+        const success = await postUser(user)
+        if(success) {
+            return router.push("/login")
+        }
+    }
 
     return(
         <>
@@ -46,7 +50,7 @@ const SignUp = () =>{
                         </div>
 
                         <div>
-                            <Button className="flex w-full justify-center rounded-md bg-two px-3 py-1.5 text-sm font-semibold leading-6 text-black shadow-sm hover:bg-one">Sign up</Button>
+                            <Button onClick={(event) => handleAddUser(event)} className="flex w-full justify-center rounded-md bg-two px-3 py-1.5 text-sm font-semibold leading-6 text-black shadow-sm hover:bg-one">Sign up</Button>
                         </div>
                     </form>
 
