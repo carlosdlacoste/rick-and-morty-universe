@@ -5,7 +5,7 @@ import { twMerge } from 'tailwind-merge';
 export const customTheme = {
     sidebar: {
         root: {
-            base: twMerge('px-3 py-4', 'bg-one'), // Cambia esto al color que desees
+            base: twMerge('px-3 py-4', 'bg-one'),
         },
     },
 };
