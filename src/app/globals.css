@@ -2,3 +2,15 @@
 @tailwind components;
 @tailwind utilities;
 
+@keyframes colorChangeGreen {
+    0%, 100% {
+        color: #A2CA3E;
+    }
+    50% {
+        color: #000;
+    }
+}
+
+.color-change-green{
+    animation: colorChangeGreen 2s ease-in-out infinite;
+}
