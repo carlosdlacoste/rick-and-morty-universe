@@ -2,6 +2,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import { Button } from "@/components/ui/button"
 
 const Login = () =>{
 
@@ -36,7 +37,7 @@ const Login = () =>{
                         </div>
 
                         <div className="grid gap-y-3">
-                            <button className="flex w-full justify-center rounded-md bg-two px-3 py-1.5 text-sm font-semibold leading-6 text-black shadow-sm hover:bg-one">Sign in</button>
+                            <Button className="flex w-full justify-center rounded-md bg-two px-3 py-1.5 text-sm font-semibold leading-6 text-black shadow-sm hover:bg-one">Sign in</Button>
                         </div>
                     </form>
 

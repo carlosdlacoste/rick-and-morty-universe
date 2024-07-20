@@ -2,6 +2,7 @@
 import { useState } from "react"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
+import { Button } from "@/components/ui/button"
 
 interface User{
     fullName: string;
@@ -45,7 +46,7 @@ const SignUp = () =>{
                         </div>
 
                         <div>
-                            <button className="flex w-full justify-center rounded-md bg-two px-3 py-1.5 text-sm font-semibold leading-6 text-black shadow-sm hover:bg-one">Sign up</button>
+                            <Button className="flex w-full justify-center rounded-md bg-two px-3 py-1.5 text-sm font-semibold leading-6 text-black shadow-sm hover:bg-one">Sign up</Button>
                         </div>
                     </form>
 
