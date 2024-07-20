@@ -54,7 +54,7 @@ const config = {
         },
         one: "#A2CA3E",
         two: "#35c9dd",
-        three: "#f0e14a"
+        three: "#f0e14a",
       },
       borderRadius: {
         lg: "var(--radius)",
