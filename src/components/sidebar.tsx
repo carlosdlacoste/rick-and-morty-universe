@@ -17,6 +17,9 @@ const SideBar = () => {
             <Sidebar aria-label="Sidebar with content separator example">
                 <Sidebar.Items >
                     <Sidebar.ItemGroup>
+                        <Sidebar.Item href="/" className="hover:bg-three">
+                            Home
+                        </Sidebar.Item>
                         <Sidebar.Item href="#" className="hover:bg-three">
                             Characters
                         </Sidebar.Item>
