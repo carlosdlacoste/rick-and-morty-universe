@@ -6,6 +6,7 @@ import characterIcon from "../../public/icons/rick.svg"
 import episodesIcon from "../../public/icons/episodes.svg"
 import loginIcon from "../../public/icons/signin.svg"
 import registerIcon from "../../public/icons/register.svg"
+import signoutIcon from "../../public/icons/signout.svg"
 import Image from "next/image";
 import { useAuthStore } from "@/store/authStore";
 import { useRouter } from "next/navigation";
@@ -27,7 +28,7 @@ const SideBar = () => {
     const handleLogOut = () => {
         logout()
         console.log("se hizo logout")
-        router.push("/signup")
+        router.push("/")
         console.log("se navega a homepage")
     }
     return (
@@ -72,9 +73,9 @@ const SideBar = () => {
                         </>
                         :
                         <>
-                            <Sidebar.Item className="hover:bg-three cursor-pointer" onClick={handleLogOut}>
+                            <Sidebar.Item className="hover:bg-red-500 cursor-pointer" onClick={handleLogOut}>
                                 <div className="flex items-center space-x-4">
-                                    <Image src={loginIcon} alt="Login icon" width={24} height={24} />
+                                    <Image src={signoutIcon} alt="Logout icon" width={24} height={24} />
                                     <span>Sign Out</span>
                                 </div>
                             </Sidebar.Item>
