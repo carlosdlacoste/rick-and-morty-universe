@@ -23,11 +23,11 @@ const Characters = () =>{
                 <Table className="bg-one">
                     <TableHeader>
                         <TableRow>
-                        <TableHead className="w-[100px]">ID</TableHead>
-                        <TableHead>Name</TableHead>
-                        <TableHead>Gender</TableHead>
-                        <TableHead>Species</TableHead>
-                        <TableHead>Status</TableHead>
+                            <TableHead className="w-[100px] text-black font-bold">ID</TableHead>
+                            <TableHead className="text-black font-bold">Name</TableHead>
+                            <TableHead className="text-black font-bold">Gender</TableHead>
+                            <TableHead className="text-black font-bold">Species</TableHead>
+                            <TableHead className="text-black font-bold">Status</TableHead>
                         </TableRow>
                     </TableHeader>
                     <TableBody>
@@ -36,7 +36,7 @@ const Characters = () =>{
                                     <>
                                         <TableRow className="hover:bg-three cursor-pointer">
                                             <TableCell key={character.id}>{character.id}</TableCell>
-                                            <TableCell>{character.name}</TableCell>
+                                            <TableCell className="no-underline hover:underline hover:text-two">{character.name}</TableCell>
                                             <TableCell>{character.gender}</TableCell>
                                             <TableCell>{character.species}</TableCell>
                                             <TableCell>{character.status}</TableCell>
