@@ -36,7 +36,7 @@ const NavBar = () =>{
             </nav>
             {isSidebarOpen &&
                 <>
-                    <div className="fixed z-50">
+                    <div className="absolute z-50">
                         <SideBar/>
                     </div>
                 </>
