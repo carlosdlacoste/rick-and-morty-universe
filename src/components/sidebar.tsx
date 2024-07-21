@@ -47,7 +47,7 @@ const SideBar = () => {
                                 <span>Home</span>
                             </div>
                         </Sidebar.Item>
-                        <Sidebar.Item href="#" className="hover:bg-three">
+                        <Sidebar.Item href="/characters" className="hover:bg-three">
                             <div className="flex items-center space-x-4">
                                 <Image src={characterIcon} alt="Character icon" width={24} height={24} />
                                 <span>Characters</span>
