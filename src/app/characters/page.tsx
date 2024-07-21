@@ -20,7 +20,7 @@ const Characters = () =>{
     return (
         <>
             <div className="container mx-auto my-8">
-                <Table className="bg-one">
+                <Table className="bg-one rounded">
                     <TableHeader>
                         <TableRow>
                             <TableHead className="w-[100px] text-black font-bold">ID</TableHead>
