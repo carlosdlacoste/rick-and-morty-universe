@@ -10,6 +10,7 @@ import signoutIcon from "../../public/icons/signout.svg"
 import Image from "next/image";
 import { useAuthStore } from "@/store/authStore";
 import { useRouter } from "next/navigation";
+import { useEffect } from "react";
 
 export const customTheme = {
     sidebar: {
@@ -22,8 +23,12 @@ export const customTheme = {
 
 const SideBar = () => {
 
-    const {token, logout} = useAuthStore();
+    const {token, logout, getUserFromStorage} = useAuthStore();
     const router = useRouter();
+
+    // useEffect(() => {
+    //     getUserFromStorage()
+    // }, []);
 
     const handleLogOut = () => {
         logout()

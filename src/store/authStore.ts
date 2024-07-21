@@ -16,6 +16,7 @@ export interface AuthStore{
     userLoggedIn: AuthUser | null;
     login: (email: string, password: string) => Promise<boolean>;
     logout: () => void;
+    getUserFromStorage: () => void;
 }
 
 export const useAuthStore = create<AuthStore>((set) => ({
@@ -52,5 +53,10 @@ export const useAuthStore = create<AuthStore>((set) => ({
         set({token: null, userLoggedIn: null})
         sessionStorage.removeItem("token");
         localStorage.removeItem("user");
+    },
+    getUserFromStorage: () => {
+        const userString = localStorage.getItem('user');
+        const userLoggedIn = userString ? (JSON.parse(userString) as AuthUser) : null;
+        set({token: sessionStorage.getItem('token'), userLoggedIn: userLoggedIn})
     }
 }))
