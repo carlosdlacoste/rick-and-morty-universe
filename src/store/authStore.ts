@@ -15,6 +15,7 @@ export interface AuthStore{
     token: string | null;
     userLoggedIn: AuthUser | null;
     login: (email: string, password: string) => Promise<boolean>;
+    logout: () => void;
 }
 
 export const useAuthStore = create<AuthStore>((set) => ({
@@ -46,5 +47,10 @@ export const useAuthStore = create<AuthStore>((set) => ({
             set({token: null, userLoggedIn: null})
             return false
         }
+    },
+    logout: () => {
+        set({token: null, userLoggedIn: null})
+        sessionStorage.removeItem("token");
+        localStorage.removeItem("user");
     }
 }))
