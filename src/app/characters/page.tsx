@@ -28,6 +28,7 @@ const Characters = () =>{
                             <TableHead className="text-black font-bold">Gender</TableHead>
                             <TableHead className="text-black font-bold">Species</TableHead>
                             <TableHead className="text-black font-bold">Status</TableHead>
+                            <TableHead className="text-black font-bold text-center">Type</TableHead>
                         </TableRow>
                     </TableHeader>
                     <TableBody>
@@ -40,6 +41,7 @@ const Characters = () =>{
                                             <TableCell>{character.gender}</TableCell>
                                             <TableCell>{character.species}</TableCell>
                                             <TableCell>{character.status}</TableCell>
+                                            <TableCell className="text-center">{character.type == '' ? "classified": character.type}</TableCell>
                                         </TableRow>
                                     </>
                                 ))
