@@ -1,15 +1,20 @@
 "use client"
 import { useEffect } from "react";
+import { useCharacterStore } from "@/store/characterStore";
 
 const Characters = () =>{
+    const { getCharacters, characters } = useCharacterStore();
     useEffect(() => {
-        const loadCharacters = async () =>{
-            const response = await fetch("https://rickandmortyapi.com/api/character");
-            const data = await response.json();
-            console.log(data);
-        }
-        loadCharacters();
+        getCharacters()
     }, []);
+    console.log(characters)
+    return (
+        <>
+            <div>
+                <p>Hi Characters!</p>
+            </div>
+        </>
+    )
 }
 
 export default Characters;
