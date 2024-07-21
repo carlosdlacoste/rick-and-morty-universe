@@ -20,7 +20,7 @@ const Characters = () =>{
     return (
         <>
             <div className="container mx-auto my-8">
-                <Table>
+                <Table className="bg-one">
                     <TableHeader>
                         <TableRow>
                         <TableHead className="w-[100px]">ID</TableHead>
@@ -34,7 +34,7 @@ const Characters = () =>{
                             {
                                 characters.map(character => (
                                     <>
-                                        <TableRow>
+                                        <TableRow className="hover:bg-three cursor-pointer">
                                             <TableCell key={character.id}>{character.id}</TableCell>
                                             <TableCell>{character.name}</TableCell>
                                             <TableCell>{character.gender}</TableCell>
