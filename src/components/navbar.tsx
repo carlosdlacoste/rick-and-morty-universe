@@ -30,7 +30,13 @@ const NavBar = () =>{
                     </div>
                 </div>
             </nav>
-            {isSidebarOpen && <SideBar/>}
+            {isSidebarOpen &&
+                <>
+                    <div className="fixed">
+                        <SideBar/>
+                    </div>
+                </>
+            }
         </>
     )
 }
