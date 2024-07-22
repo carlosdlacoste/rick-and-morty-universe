@@ -2,6 +2,7 @@
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { useCharacterStore } from "@/store/characterStore";
+import { Input } from "@/components/ui/input"
 import {
     Table,
     TableBody,
@@ -33,13 +34,16 @@ const Characters = () =>{
     return (
         <>
             <div className="container mx-auto my-8">
-                <input
-                type="text"
-                value={filter}
-                onChange={(event) => setFilter(event.target.value)}
-                placeholder="Filter characters..."
-                className="mb-4 p-2 border border-gray-300 rounded"
-                />
+                <div className="flex justify-center items-center">
+
+                    <Input
+                    type="text"
+                    value={filter}
+                    onChange={(event) => setFilter(event.target.value)}
+                    placeholder="Filter characters..."
+                    className="mb-4 p-2 border border-gray-300 rounded w-1/3 h-1/3 ring-1 ring-inset ring-one focus:ring-2 focus:ring-inset focus:ring-one sm:text-sm sm:leading-6"
+                    />
+                </div>
                 <Table className="bg-one rounded">
                     <TableHeader>
                         <TableRow>
