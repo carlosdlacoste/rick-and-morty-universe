@@ -73,15 +73,28 @@
 
 @keyframes colorChangeGreen {
     0%, 100% {
-        color: #A2CA3E;
+      @apply text-one;
     }
     50% {
         color: #000;
     }
 }
 
+@keyframes colorChangeYellow {
+  0%, 100% {
+      @apply text-three;
+  }
+  50% {
+      color: #fff;
+  }
+}
+
 .color-change-green{
     animation: colorChangeGreen 2s ease-in-out infinite;
+}
+
+.color-change-yellow{
+  animation: colorChangeYellow 2s ease-in-out infinite;
 }
 
 @media (max-height: 1000px){
