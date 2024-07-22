@@ -4,6 +4,8 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { Button } from "@/components/ui/button"
 import { useAuthStore } from "@/store/authStore";
+import { useToast } from "@/components/ui/use-toast"
+import { ToastAction } from "@/components/ui/toast"
 
 const Login = () =>{
 
@@ -11,11 +13,28 @@ const Login = () =>{
     const [password, setPassword] = useState("")
     const { login } = useAuthStore()
     const router = useRouter()
+    const { toast } = useToast()
 
     const handleLogIn = async (event: React.FormEvent) =>{
         event.preventDefault()
         const success = await login(email, password)
-        if(success) return router.push("/")
+        if(success) {
+            toast({
+                title: "Welcome",
+                description: "You have successfully logged in",
+                duration: 4000
+            })
+            return router.push("/")
+        }
+        else{
+            toast({
+                variant: "destructive",
+                title: "Error",
+                description: "Invalid credentials.",
+                action: <ToastAction altText="Try again">Try again</ToastAction>,
+                duration: 4000
+            })
+        }
     }
 
 
@@ -45,7 +64,7 @@ const Login = () =>{
                         </div>
 
                         <div className="grid gap-y-3">
-                            <Button onClick={(event) => handleLogIn(event)} className="flex w-full justify-center rounded-md bg-two px-3 py-1.5 text-sm font-semibold leading-6 text-black shadow-sm hover:bg-one">Sign in</Button>
+                            <Button onClick={(event) => handleLogIn(event)} className="flex w-full justify-center rounded-md bg-three px-3 py-1.5 text-sm font-bold leading-6 text-black shadow-sm hover:bg-one">Sign in</Button>
                         </div>
                     </form>
 
