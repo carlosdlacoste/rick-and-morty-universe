@@ -25,7 +25,7 @@ const Login = () =>{
                 description: "You have successfully logged in",
                 duration: 4000
             })
-            return router.push("/")
+            router.push("/")
         }
         else{
             toast({
