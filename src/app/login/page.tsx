@@ -20,6 +20,7 @@ const Login = () =>{
         const success = await login(email, password)
         if(success) {
             toast({
+                variant: "success",
                 title: "Welcome",
                 description: "You have successfully logged in",
                 duration: 4000
