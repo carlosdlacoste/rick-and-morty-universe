@@ -1,7 +1,7 @@
 "use client"
 import { useEffect } from "react";
-import { useRouter } from "next/navigation";
 import { useEpisodeStore } from "@/store/episodeStore";
+import { Input } from "@/components/ui/input"
 import {
     Table,
     TableBody,
@@ -13,15 +13,33 @@ import {
     } from "@/components/ui/table"
 
 const Episodes = () =>{
-    const { getEpisodes, episodes } = useEpisodeStore();
-    const router = useRouter();
+    const { getEpisodes, episodes, filter, setFilter } = useEpisodeStore();
     useEffect(() => {
         getEpisodes()
     }, []);
-    console.log(episodes)
+
+    const filteredEpisodes = episodes.filter((episode) => {
+        const searchTerm = filter.toLowerCase();
+        return (
+            episode.name.toLowerCase().includes(searchTerm) ||
+            episode.air_date.toLowerCase().includes(searchTerm) ||
+            episode.episode.toLowerCase().includes(searchTerm)
+        );
+    });
+
     return (
         <>
             <div className="container mx-auto my-8">
+                <div className="flex justify-center items-center">
+
+                    <Input
+                    type="text"
+                    value={filter}
+                    onChange={(event) => setFilter(event.target.value)}
+                    placeholder="Filter episodes..."
+                    className="mb-4 p-2 border border-gray-300 rounded w-1/3 h-1/3 ring-1 ring-inset ring-one focus:ring-2 focus:ring-inset focus:ring-one sm:text-sm sm:leading-6"
+                    />
+                </div>
                 <Table className="bg-one rounded">
                     <TableHeader>
                         <TableRow>
@@ -33,7 +51,7 @@ const Episodes = () =>{
                     </TableHeader>
                     <TableBody>
                             {
-                                episodes.map(episode => (
+                                filteredEpisodes.map(episode => (
                                     <>
                                         <TableRow  key={episode.id} className="hover:bg-three cursor-pointer">
                                             <TableCell>{episode.id}</TableCell>
