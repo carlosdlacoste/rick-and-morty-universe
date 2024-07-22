@@ -1,5 +1,6 @@
 "use client"
 import { useEffect } from "react";
+import { useRouter } from "next/navigation";
 import { useCharacterStore } from "@/store/characterStore";
 import {
     Table,
@@ -13,6 +14,7 @@ import {
 
 const Characters = () =>{
     const { getCharacters, characters } = useCharacterStore();
+    const router = useRouter();
     useEffect(() => {
         getCharacters()
     }, []);
@@ -35,8 +37,8 @@ const Characters = () =>{
                             {
                                 characters.map(character => (
                                     <>
-                                        <TableRow className="hover:bg-three cursor-pointer">
-                                            <TableCell key={character.id}>{character.id}</TableCell>
+                                        <TableRow  key={character.id} className="hover:bg-three cursor-pointer" onClick={() => router.push(`/characters/${character.id}`)}>
+                                            <TableCell>{character.id}</TableCell>
                                             <TableCell className="no-underline hover:underline hover:text-two">{character.name}</TableCell>
                                             <TableCell>{character.gender}</TableCell>
                                             <TableCell>{character.species}</TableCell>
