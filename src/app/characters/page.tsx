@@ -1,58 +1,89 @@
-"use client"
+"use client";
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { useCharacterStore } from "@/store/characterStore";
+import { useCharacterStore, Character } from "@/store/characterStore";
 import {
     Table,
     TableBody,
-    TableCaption,
     TableCell,
     TableHead,
     TableHeader,
     TableRow,
-    } from "@/components/ui/table"
+} from "@/components/ui/table";
+import { useReactTable, ColumnDef, getCoreRowModel, getFilteredRowModel } from "@tanstack/react-table";
 
-const Characters = () =>{
-    const { getCharacters, characters } = useCharacterStore();
+const Characters = () => {
+    const { getCharacters, characters, filter, setFilter } = useCharacterStore();
     const router = useRouter();
+
     useEffect(() => {
-        getCharacters()
+        getCharacters();
     }, []);
-    console.log(characters)
+
+    const columns: ColumnDef<Character>[] = [
+        { accessorKey: "id", header: "ID" },
+        { accessorKey: "name", header: "Name" },
+        { accessorKey: "gender", header: "Gender" },
+        { accessorKey: "species", header: "Species" },
+        { accessorKey: "status", header: "Status" },
+        { accessorKey: "type", header: "Type" },
+    ];
+
+    const table = useReactTable({
+        data: characters,
+        columns,
+        state: {
+        globalFilter: filter,
+        },
+        onGlobalFilterChange: setFilter,
+        getCoreRowModel: getCoreRowModel(),
+        getFilteredRowModel: getFilteredRowModel(),
+    });
+
     return (
         <>
-            <div className="container mx-auto my-8">
-                <Table className="bg-one rounded">
-                    <TableHeader>
-                        <TableRow>
-                            <TableHead className="w-[100px] text-black font-bold">ID</TableHead>
-                            <TableHead className="text-black font-bold">Name</TableHead>
-                            <TableHead className="text-black font-bold">Gender</TableHead>
-                            <TableHead className="text-black font-bold">Species</TableHead>
-                            <TableHead className="text-black font-bold">Status</TableHead>
-                            <TableHead className="text-black font-bold text-center">Type</TableHead>
+        <div className="container mx-auto my-8">
+            <input
+            type="text"
+            value={filter}
+            onChange={(event) => setFilter(event.target.value)}
+            placeholder="Filter characters..."
+            className="mb-4 p-2 border border-gray-300 rounded"
+            />
+            <Table className="bg-one rounded">
+                <TableHeader>
+                    {table.getHeaderGroups().map((headerGroup) => (
+                    <TableRow key={headerGroup.id}>
+                        {headerGroup.headers.map((header) => (
+                            <TableHead key={header.id} className="text-black font-bold">
+                                {typeof header.column.columnDef.header === 'function'
+                                ? header.column.columnDef.header(header.getContext())
+                                : header.column.columnDef.header}
+                            </TableHead>
+                        ))}
+                    </TableRow>
+                    ))}
+                </TableHeader>
+                <TableBody>
+                    {table.getRowModel().rows.map((row) => (
+                        <TableRow
+                            key={row.id}
+                            className="hover:bg-three cursor-pointer"
+                            onClick={() => router.push(`/characters/${row.original.id}`)}
+                        >
+                            {row.getVisibleCells().map((cell) => (
+                                <TableCell key={cell.id}>{typeof cell.column.columnDef.cell === 'function'
+                                    ? cell.column.columnDef.cell(cell.getContext())
+                                    : cell.column.columnDef.cell}
+                                </TableCell>
+                            ))}
                         </TableRow>
-                    </TableHeader>
-                    <TableBody>
-                            {
-                                characters.map(character => (
-                                    <>
-                                        <TableRow  key={character.id} className="hover:bg-three cursor-pointer" onClick={() => router.push(`/characters/${character.id}`)}>
-                                            <TableCell>{character.id}</TableCell>
-                                            <TableCell className="no-underline hover:underline hover:text-two">{character.name}</TableCell>
-                                            <TableCell>{character.gender}</TableCell>
-                                            <TableCell>{character.species}</TableCell>
-                                            <TableCell>{character.status}</TableCell>
-                                            <TableCell className="text-center">{character.type == '' ? "classified": character.type}</TableCell>
-                                        </TableRow>
-                                    </>
-                                ))
-                            }
-                    </TableBody>
-                </Table>
-            </div>
+                    ))}
+                </TableBody>
+            </Table>
+        </div>
         </>
-    )
-}
+    );
+};
 
 export default Characters;
