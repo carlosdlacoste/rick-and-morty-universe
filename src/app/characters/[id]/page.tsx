@@ -1,7 +1,9 @@
 "use client"
 import { useCharacterStore } from "@/store/characterStore"
 import { useRouter, useParams } from "next/navigation"
+import { Button } from "@/components/ui/button"
 import Image from "next/image"
+import backIcon from "../../../../public/icons/back-icon.svg"
 import {
     Card,
     CardContent,
@@ -41,6 +43,12 @@ const CharacterDetails = () =>{
                         </CardContent>
                     </div>
                 </Card>
+                <div className="flex justify-center items-center w-2/5">
+                    <Button onClick={() => router.back()} className="flex items-center space-x-2 mt-4 w-1/4 bg-three text-black font-bold hover:bg-one">
+                        <Image src={backIcon} alt="Back icon" width={20} height={20} />
+                        <span>Back</span>
+                    </Button>
+                </div>
             </div>
         </>
     )
