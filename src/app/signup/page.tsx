@@ -4,6 +4,8 @@ import Link from "next/link"
 import { useRouter } from "next/navigation"
 import { Button } from "@/components/ui/button"
 import { useUserStore, NewUser } from "@/store/userStore"
+import { useToast } from "@/components/ui/use-toast"
+import { ToastAction } from "@/components/ui/toast"
 
 
 const SignUp = () =>{
@@ -11,11 +13,18 @@ const SignUp = () =>{
     const [user, setUser] = useState<NewUser>({fullName: "", email: "", password: ""})
     const {postUser} = useUserStore()
     const router = useRouter()
+    const { toast } = useToast()
 
     const handleAddUser = async (event: React.FormEvent) =>{
         event.preventDefault()
         const success = await postUser(user)
         if(success) {
+            toast({
+                variant: "success",
+                title: "Account created!",
+                description: "You have successfully signed up",
+                duration: 4000
+            })
             return router.push("/login")
         }
     }
@@ -50,7 +59,7 @@ const SignUp = () =>{
                         </div>
 
                         <div>
-                            <Button onClick={(event) => handleAddUser(event)} className="flex w-full justify-center rounded-md bg-two px-3 py-1.5 text-sm font-semibold leading-6 text-black shadow-sm hover:bg-one">Sign up</Button>
+                            <Button onClick={(event) => handleAddUser(event)} className="flex w-full justify-center rounded-md bg-three px-3 py-1.5 text-sm font-semibold leading-6 text-black shadow-sm hover:bg-one">Sign up</Button>
                         </div>
                     </form>
 
