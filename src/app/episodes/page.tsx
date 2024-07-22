@@ -51,9 +51,9 @@ const Episodes = () =>{
                     </TableHeader>
                     <TableBody>
                             {
-                                filteredEpisodes.map(episode => (
+                                filteredEpisodes.map((episode, index) => (
                                     <>
-                                        <TableRow  key={episode.id} className="hover:bg-three cursor-pointer">
+                                        <TableRow  key={index} className="hover:bg-three cursor-pointer">
                                             <TableCell>{episode.id}</TableCell>
                                             <TableCell className="no-underline hover:underline hover:text-two">{episode.name}</TableCell>
                                             <TableCell>{episode.air_date}</TableCell>

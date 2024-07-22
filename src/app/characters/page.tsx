@@ -57,9 +57,9 @@ const Characters = () =>{
                     </TableHeader>
                     <TableBody>
                             {
-                                filteredCharacters.map(character => (
+                                filteredCharacters.map((character, index) => (
                                     <>
-                                        <TableRow  key={character.id} className="hover:bg-three cursor-pointer" onClick={() => router.push(`/characters/${character.id}`)}>
+                                        <TableRow  key={index} className="hover:bg-three cursor-pointer" onClick={() => router.push(`/characters/${character.id}`)}>
                                             <TableCell>{character.id}</TableCell>
                                             <TableCell className="no-underline hover:underline hover:text-two">{character.name}</TableCell>
                                             <TableCell>{character.gender}</TableCell>
