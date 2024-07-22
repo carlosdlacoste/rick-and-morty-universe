@@ -23,19 +23,19 @@ const CharacterDetails = () =>{
         <>
             <div  className="flex h-screen flex-col justify-center items-center px-6 py-12 lg:px-8">
 
-                <Card className="w-2/5 h-3/5 shadow-lg">
+                <Card className="w-2/5 h-3/5 shadow-lg bg-two">
                     <div className="flex flex-col justify-center items-center">
                         <CardHeader>
-                            <CardTitle>{character?.name}</CardTitle>
+                            <CardTitle className="text-three">{character?.name}</CardTitle>
                         </CardHeader>
                         <img src={character?.image} alt="Character icon" width={150} height={150} className="rounded-full"/>
                         <CardContent>
-                            <div className="flex flex-col items-center py-4">
+                            <div className="flex flex-col items-center py-4 space-y-1">
 
-                                <p className="text-sm">Gender: <span className="font-bold">{character?.gender}</span></p>
-                                <p className="text-sm">Species: <span className="font-bold">{character?.species}</span></p>
-                                <p className="text-sm">Status: <span className="font-bold">{character?.status}</span></p>
-                                <p className="text-sm">Type: <span className="font-bold">{character?.type == ''? 'classified': character?.type}</span></p>
+                                <p className="text-sm font-bold">Gender: <span className="font-bold text-three">{character?.gender}</span></p>
+                                <p className="text-sm font-bold">Species: <span className="font-bold text-three">{character?.species}</span></p>
+                                <p className="text-sm font-bold">Status: <span className="font-bold text-three">{character?.status}</span></p>
+                                <p className="text-sm font-bold">Type: <span className="font-bold text-three">{character?.type == ''? 'classified': character?.type}</span></p>
                             </div>
 
                         </CardContent>
