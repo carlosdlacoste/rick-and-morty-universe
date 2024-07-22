@@ -83,3 +83,11 @@
 .color-change-green{
     animation: colorChangeGreen 2s ease-in-out infinite;
 }
+
+@media (max-height: 1000px){
+  .home-image{
+      background-image: url(/logos/rick_morty_wallpaper.jpg);
+      background-size: cover;
+      min-height: 100vh;
+  }
+}
