@@ -13,15 +13,33 @@ import {
     } from "@/components/ui/table"
 
 const Characters = () =>{
-    const { getCharacters, characters } = useCharacterStore();
+    const { getCharacters, characters, filter, setFilter } = useCharacterStore();
     const router = useRouter();
     useEffect(() => {
         getCharacters()
     }, []);
-    console.log(characters)
+
+    const filteredCharacters = characters.filter((character) => {
+        const searchTerm = filter.toLowerCase();
+        return (
+            character.name.toLowerCase().includes(searchTerm) ||
+            character.gender.toLowerCase().includes(searchTerm) ||
+            character.species.toLowerCase().includes(searchTerm) ||
+            character.status.toLowerCase().includes(searchTerm) ||
+            character.type.toLowerCase().includes(searchTerm)
+        );
+    });
+
     return (
         <>
             <div className="container mx-auto my-8">
+                <input
+                type="text"
+                value={filter}
+                onChange={(event) => setFilter(event.target.value)}
+                placeholder="Filter characters..."
+                className="mb-4 p-2 border border-gray-300 rounded"
+                />
                 <Table className="bg-one rounded">
                     <TableHeader>
                         <TableRow>
@@ -35,7 +53,7 @@ const Characters = () =>{
                     </TableHeader>
                     <TableBody>
                             {
-                                characters.map(character => (
+                                filteredCharacters.map(character => (
                                     <>
                                         <TableRow  key={character.id} className="hover:bg-three cursor-pointer" onClick={() => router.push(`/characters/${character.id}`)}>
                                             <TableCell>{character.id}</TableCell>
