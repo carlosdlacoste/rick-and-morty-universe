@@ -4,6 +4,11 @@
 
 @import 'flowbite';
 
+@font-face {
+  font-family: 'Get Schwifty';
+  src: url('/fonts/get_schwifty.ttf') format('truetype');
+}
+
 @layer base {
   :root {
     --background: 0 0% 100%;
@@ -85,7 +90,7 @@
       @apply text-three;
   }
   50% {
-      color: #fff;
+      color: #000;
   }
 }
 
@@ -95,6 +100,10 @@
 
 .color-change-yellow{
   animation: colorChangeYellow 2s ease-in-out infinite;
+}
+
+.font-get-schwifty {
+  font-family: 'Get Schwifty', sans-serif;
 }
 
 @media (max-height: 1000px){
