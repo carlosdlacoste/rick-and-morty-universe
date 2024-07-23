@@ -2,7 +2,9 @@
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { useCharacterStore } from "@/store/characterStore";
+import { useAuthStore } from "@/store/authStore";
 import { Input } from "@/components/ui/input"
+import { useToast } from "@/components/ui/use-toast"
 import {
     Table,
     TableBody,
@@ -15,8 +17,23 @@ import {
 
 const Characters = () =>{
     const { getCharacters, characters, filter, setFilter } = useCharacterStore();
+    const { token} = useAuthStore();
+    const { toast } = useToast();
     const router = useRouter();
     useEffect(() => {
+        // const userIsAuthenticated = () =>{
+        //     if (!token){
+            //         toast({
+                //             variant: "destructive",
+                //             title: "Authentication required",
+                //             description: "Please log in to access this page.",
+                //             duration: 4000,
+                //         });
+                //         router.push("/login");
+        //     }
+        //     else getCharacters()
+        // }
+        // userIsAuthenticated()
         getCharacters()
     }, []);
 
@@ -33,6 +50,8 @@ const Characters = () =>{
 
     return (
         <>
+        {
+            token &&
             <div className="container mx-auto my-8">
                 <div className="flex justify-center items-center">
 
@@ -73,6 +92,7 @@ const Characters = () =>{
                     </TableBody>
                 </Table>
             </div>
+        }
         </>
     )
 }
