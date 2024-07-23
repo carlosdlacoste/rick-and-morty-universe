@@ -11,7 +11,7 @@ const Login = () =>{
 
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
-    const { login } = useAuthStore()
+    const { login, setUserFromStorage } = useAuthStore()
     const router = useRouter()
     const { toast } = useToast()
 
@@ -19,6 +19,7 @@ const Login = () =>{
         event.preventDefault()
         const success = await login(email, password)
         if(success) {
+            setUserFromStorage()
             toast({
                 variant: "success",
                 title: "Welcome",

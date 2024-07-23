@@ -17,9 +17,10 @@ export interface AuthStore{
     login: (email: string, password: string) => Promise<boolean>;
     logout: () => void;
     getUserFromStorage: () => void;
+    setUserFromStorage: () => void;
 }
 
-export const useAuthStore = create<AuthStore>((set) => ({
+export const useAuthStore = create<AuthStore>((set, get) => ({
     token: null,
     userLoggedIn: null,
     login: async (email: string, password: string): Promise<boolean> =>{
@@ -38,8 +39,6 @@ export const useAuthStore = create<AuthStore>((set) => ({
                 const data = await response.json()
                 // console.log("esto viene del backend", data);
                 set({token: data.token, userLoggedIn: data.user})
-                sessionStorage.setItem("token", data.token);
-				localStorage.setItem("user", JSON.stringify(data.user))
                 return true
             }
             return false
@@ -58,5 +57,12 @@ export const useAuthStore = create<AuthStore>((set) => ({
         const userString = localStorage.getItem('user');
         const userLoggedIn = userString ? (JSON.parse(userString) as AuthUser) : null;
         set({token: sessionStorage.getItem('token'), userLoggedIn: userLoggedIn})
+    },
+    setUserFromStorage: () => {
+        const {token, userLoggedIn} = get()
+        if(token && userLoggedIn) {
+            sessionStorage.setItem("token", token);
+            localStorage.setItem("user", JSON.stringify(userLoggedIn))
+        }
     }
 }))
