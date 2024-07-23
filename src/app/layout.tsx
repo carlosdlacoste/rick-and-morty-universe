@@ -19,6 +19,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <link rel="icon" href="/icons/rick.svg" />
+      </head>
       <body className={inter.className}>
         <StateInitializer>
           <NavBar/>
