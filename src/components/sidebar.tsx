@@ -15,7 +15,7 @@ import { useEffect } from "react";
 export const customTheme = {
     sidebar: {
         root: {
-            base: twMerge('px-3 py-4', 'bg-one'),
+            base: twMerge('px-3 py-4 h-4/5', 'bg-one'),
         },
     },
 };
@@ -39,8 +39,8 @@ const SideBar = () => {
     return (
         <Flowbite theme={{ theme: customTheme }}>
             <Sidebar aria-label="Sidebar with content separator example">
-                <Sidebar.Items >
-                    <Sidebar.ItemGroup>
+                <Sidebar.Items className="h-[100%]">
+                    <Sidebar.ItemGroup className="h-[50%] flex flex-col space-y-5">
                         <Sidebar.Item href="/" className="hover:bg-three">
                             <div className="flex items-center space-x-4">
                                 <Image src={homeIcon} alt="Home icon" width={24} height={24} />
@@ -60,7 +60,7 @@ const SideBar = () => {
                             </div>
                         </Sidebar.Item>
                     </Sidebar.ItemGroup>
-                    <Sidebar.ItemGroup>
+                    <Sidebar.ItemGroup className="h-[50%] flex flex-col space-y-5">
                         {!token ?
                         <>
                             <Sidebar.Item href="/login" className="hover:bg-three">
