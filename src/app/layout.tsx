@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import NavBar from "@/components/navbar";
 import { Toaster } from "@/components/ui/toaster";
+import StateInitializer from "@/components/stateInitializer";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -19,9 +20,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <NavBar/>
-        {children}
-        <Toaster/>
+        <StateInitializer>
+          <NavBar/>
+          {children}
+          <Toaster/>
+        </StateInitializer>
       </body>
     </html>
   );

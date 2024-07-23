@@ -18,11 +18,13 @@ export interface AuthStore{
     logout: () => void;
     getUserFromStorage: () => void;
     setUserFromStorage: () => void;
+    setToken: (token: string) => void;
 }
 
 export const useAuthStore = create<AuthStore>((set, get) => ({
     token: null,
     userLoggedIn: null,
+    setToken: (token: string) => {set({token})},
     login: async (email: string, password: string): Promise<boolean> =>{
         try {
             const response = await fetch('/api/auth', {
